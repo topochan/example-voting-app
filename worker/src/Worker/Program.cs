@@ -16,8 +16,10 @@ namespace Worker
         {
             try
             {
-                var pgsql = OpenDbConnection("Server=db;Username=postgres;");
-                var redis = OpenRedisConnection("redis").GetDatabase();
+                var pgsqlHost = Environment.GetEnvironmentVariable("POSTGRES_DB");
+                var redisHost = Environment.GetEnvironmentVariable("REDIS");
+                var pgsql = OpenDbConnection("Server=" + pgsqlHost + ";Username=postgres;");
+                var redis = OpenRedisConnection(redisHost).GetDatabase();
 
                 var definition = new { vote = "", voter_id = "" };
                 while (true)
