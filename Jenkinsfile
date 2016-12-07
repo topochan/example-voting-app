@@ -1,7 +1,5 @@
 node {
-  stage "Checkout" {
-    checkout scm
-  }
+  checkout scm
 
   stage "Build" {
     sh "docker build -t topochan/vote ./vote"
